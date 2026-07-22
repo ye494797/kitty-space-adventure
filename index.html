@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <meta
+        name="description"
+        content="A cute browser game where astronaut cats collect stars and avoid space hazards."
+    >
+
+    <title>Kitty Space Adventure</title>
+
+   
+    <link
+        rel="stylesheet"
+        href="https://use.typekit.net/fnk1ycb.css"
+    >
+
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+
+<body>
+
+    <main class="game-wrapper">
+
+        <!-- TITLE SCREEN -->
+        <section
+            id="title-screen"
+            class="screen screen--active title-screen"
+        >
+            <div class="title-content">
+
+                <img
+                    class="game-logo"
+                    src="images/logo/kitty-space-adventure-logo.png"
+                    alt="Kitty Space Adventure"
+                >
+
+                <h1 class="visually-hidden">
+                    Kitty Space Adventure
+                </h1>
+
+                <p class="title-tagline">
+                    Collect the stars and avoid space hazards!
+                </p>
+
+                <button
+                    id="start-game-button"
+                    class="primary-button"
+                    type="button"
+                >
+                    Start Game
+                </button>
+
+            </div>
+
+            <footer class="screen-footer">
+                <p>Designed and developed by Yen-Nhi Truong</p>
+            </footer>
+        </section>
+
+
+        <!-- CHARACTER SELECTION -->
+        <section
+            id="character-screen"
+            class="screen character-screen"
+        >
+            <div class="screen-panel">
+
+                <header class="screen-header">
+                    <p class="eyebrow">Character Selection</p>
+
+                    <h2>Choose Your Astronaut</h2>
+
+                    <p>
+                        Select the kitty you want to send on the mission.
+                    </p>
+                </header>
+
+                <div class="character-grid">
+
+                    <button
+                        class="character-card"
+                        type="button"
+                        data-character="orange"
+                        data-name="Orange Cat"
+                        aria-pressed="false"
+                    >
+                        <img
+                            src="images/characters/orange-cat.png"
+                            alt="Orange Cat, brave explorer"
+                        >
+
+                        <span class="selection-check" aria-hidden="true">
+                            ✓
+                        </span>
+                    </button>
+
+
+                    <button
+                        class="character-card"
+                        type="button"
+                        data-character="black"
+                        data-name="Black Cat"
+                        aria-pressed="false"
+                    >
+                        <img
+                            src="images/characters/black-cat.png"
+                            alt="Black Cat, mysterious traveler"
+                        >
+
+                        <span class="selection-check" aria-hidden="true">
+                            ✓
+                        </span>
+                    </button>
+
+
+                    <button
+                        class="character-card"
+                        type="button"
+                        data-character="white"
+                        data-name="White Cat"
+                        aria-pressed="false"
+                    >
+                        <img
+                            src="images/characters/white-cat.png"
+                            alt="White Cat, curious adventurer"
+                        >
+
+                        <span class="selection-check" aria-hidden="true">
+                            ✓
+                        </span>
+                    </button>
+
+
+                    <button
+                        class="character-card"
+                        type="button"
+                        data-character="gray"
+                        data-name="Gray Cat"
+                        aria-pressed="false"
+                    >
+                        <img
+                            src="images/characters/gray-cat.png"
+                            alt="Gray Cat, gentle dreamer"
+                        >
+
+                        <span class="selection-check" aria-hidden="true">
+                            ✓
+                        </span>
+                    </button>
+
+                </div>
+
+                <p
+                    id="character-feedback"
+                    class="selection-feedback"
+                    aria-live="polite"
+                >
+                    Choose one astronaut to continue.
+                </p>
+
+                <button
+                    id="continue-button"
+                    class="primary-button"
+                    type="button"
+                    disabled
+                >
+                    Continue Mission
+                </button>
+
+            </div>
+        </section>
+
+
+        <!-- MISSION BRIEFING -->
+        <section
+            id="mission-screen"
+            class="screen mission-screen"
+        >
+            <div class="screen-panel mission-panel">
+
+                <header class="screen-header">
+                    <p class="eyebrow">Mission Briefing</p>
+                    <h2>Your Mission</h2>
+                </header>
+
+                <div class="professor-layout">
+
+                    <img
+                        class="professor-image"
+                        src="images/characters/professor-whiskers.png"
+                        alt="Professor Whiskers"
+                    >
+
+                    <div class="speech-bubble">
+                        <p class="professor-name">
+                            Professor Whiskers says:
+                        </p>
+
+                        <p>
+                            “Collect 15 stars before time runs out!”
+                        </p>
+                    </div>
+
+                </div>
+
+                <div class="mission-rules">
+
+                    <article class="rule-card">
+                        <img src="images/icons/star.png" alt="">
+                        <div>
+                            <h3>Collect Stars</h3>
+                            <p>Gather 15 stars to complete the mission.</p>
+                        </div>
+                    </article>
+
+                    <article class="rule-card">
+                        <img src="images/icons/asteroid.png" alt="">
+                        <div>
+                            <h3>Avoid Asteroids</h3>
+                            <p>Each asteroid removes one life.</p>
+                        </div>
+                    </article>
+
+                    <article class="rule-card">
+                        <img src="images/icons/black-hole.png" alt="">
+                        <div>
+                            <h3>Avoid Black Holes</h3>
+                            <p>A black hole removes two lives.</p>
+                        </div>
+                    </article>
+
+                    <article class="rule-card">
+                        <img src="images/icons/heart.png" alt="">
+                        <div>
+                            <h3>Three Lives</h3>
+                            <p>The mission ends when all lives are lost.</p>
+                        </div>
+                    </article>
+
+                    <article class="rule-card">
+                        <img src="images/icons/timer.png" alt="">
+                        <div>
+                            <h3>60 Seconds</h3>
+                            <p>Collect all stars before time reaches zero.</p>
+                        </div>
+                    </article>
+
+                    <article class="rule-card">
+                        <div class="keyboard-icon" aria-hidden="true">
+                            ↑ ↓ ← →
+                        </div>
+
+                        <div>
+                            <h3>Movement</h3>
+                            <p>Use arrow keys, WASD, or mobile controls.</p>
+                        </div>
+                    </article>
+
+                </div>
+
+                <button
+                    id="start-mission-button"
+                    class="primary-button"
+                    type="button"
+                >
+                    Start Mission
+                </button>
+
+            </div>
+        </section>
+
+
+        <!-- GAME SCREEN -->
+        <section
+            id="game-screen"
+            class="screen game-screen"
+        >
+            <div class="hud">
+
+                <div class="hud-item">
+                    <span class="hud-label">Lives</span>
+
+                    <div
+                        id="health-display"
+                        class="health-display"
+                        aria-live="polite"
+                    ></div>
+                </div>
+
+                <div class="hud-item">
+                    <span class="hud-label">Stars</span>
+
+                    <div class="hud-value">
+                        <img src="images/icons/star.png" alt="">
+                        <span id="score-display">0 / 15</span>
+                    </div>
+                </div>
+
+                <div class="hud-item">
+                    <span class="hud-label">Time</span>
+
+                    <div class="hud-value">
+                        <img src="images/icons/timer.png" alt="">
+                        <span id="timer-display">60</span>
+                    </div>
+                </div>
+
+            </div>
+
+            <p
+                id="game-feedback"
+                class="game-feedback"
+                aria-live="polite"
+            >
+                Collect the stars!
+            </p>
+
+            <div
+                id="game-area"
+                class="game-area"
+                aria-label="Gameplay area"
+            >
+                <img
+                    id="player"
+                    class="player"
+                    src="images/characters/orange-cat-player.png"
+                    alt="Astronaut cat player"
+                    draggable="false"
+                >
+            </div>
+
+            <div
+                class="mobile-controls"
+                aria-label="Movement controls"
+            >
+                <button
+                    class="control-button control-button--up"
+                    type="button"
+                    data-direction="up"
+                    aria-label="Move up"
+                >
+                    ↑
+                </button>
+
+                <button
+                    class="control-button control-button--left"
+                    type="button"
+                    data-direction="left"
+                    aria-label="Move left"
+                >
+                    ←
+                </button>
+
+                <button
+                    class="control-button control-button--down"
+                    type="button"
+                    data-direction="down"
+                    aria-label="Move down"
+                >
+                    ↓
+                </button>
+
+                <button
+                    class="control-button control-button--right"
+                    type="button"
+                    data-direction="right"
+                    aria-label="Move right"
+                >
+                    →
+                </button>
+            </div>
+        </section>
+
+
+        <!-- VICTORY SCREEN -->
+        <section
+            id="victory-screen"
+            class="screen ending-screen"
+        >
+            <div class="ending-panel">
+
+                <p class="eyebrow">Mission Result</p>
+
+                <h2>Mission Complete!</h2>
+
+                <img
+                    class="ending-image"
+                    src="images/characters/victory-cat.png"
+                    alt="Happy astronaut cat celebrating"
+                >
+
+                <p class="ending-message">
+                    You collected all 15 stars!
+                </p>
+
+                <p
+                    id="victory-summary"
+                    class="ending-summary"
+                >
+                    The galaxy is safe thanks to you.
+                </p>
+
+                <div class="ending-buttons">
+
+                    <button
+                        id="play-again-button"
+                        class="primary-button"
+                        type="button"
+                    >
+                        Play Again
+                    </button>
+
+                    <button
+                        id="victory-change-character-button"
+                        class="secondary-button"
+                        type="button"
+                    >
+                        Change Character
+                    </button>
+
+                </div>
+
+            </div>
+        </section>
+
+
+        <!-- GAME OVER SCREEN -->
+        <section
+            id="game-over-screen"
+            class="screen ending-screen"
+        >
+            <div class="ending-panel">
+
+                <p class="eyebrow">Mission Result</p>
+
+                <h2 class="failure-heading">
+                    Mission Failed
+                </h2>
+
+                <img
+                    class="ending-image"
+                    src="images/characters/game-over-cat.png"
+                    alt="Disappointed astronaut cat"
+                >
+
+                <p
+                    id="lose-reason"
+                    class="ending-message"
+                >
+                    You ran out of time.
+                </p>
+
+                <p class="ending-summary">
+                    The galaxy still needs your help. Try again!
+                </p>
+
+                <div class="ending-buttons">
+
+                    <button
+                        id="try-again-button"
+                        class="primary-button"
+                        type="button"
+                    >
+                        Try Again
+                    </button>
+
+                    <button
+                        id="lose-change-character-button"
+                        class="secondary-button"
+                        type="button"
+                    >
+                        Change Character
+                    </button>
+
+                </div>
+
+            </div>
+        </section>
+
+    </main>
+
+    <script src="js/script.js"></script>
+</body>
+</html>
