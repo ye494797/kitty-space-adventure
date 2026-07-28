@@ -868,16 +868,20 @@ p {
         ". up ."
         "left down right";
 
-    grid-template-columns: repeat(3, 62px);
+    grid-template-columns: repeat(3, 72px);
+    justify-content: center;
 
-    gap: 9px;
+    gap: 12px;
 
     margin-top: 18px;
+
+    user-select: none;
+    -webkit-user-select: none;
 }
 
 .control-button {
-    width: 62px;
-    height: 55px;
+    width: 72px;
+    height: 64px;
 
     color: var(--white);
 
@@ -889,14 +893,17 @@ p {
     box-shadow:
         0 6px 0 rgba(40, 31, 112, 0.65);
 
-    font-size: 1.5rem;
+    font-size: 1.75rem;
     font-weight: 800;
 
     cursor: pointer;
 
-    touch-action: manipulation;
+    touch-action: none;
+    user-select: none;
+    -webkit-user-select: none;
+    -webkit-touch-callout: none;
+    -webkit-tap-highlight-color: transparent;
 }
-
 .control-button:active,
 .control-button.is-active {
     transform: translateY(4px);

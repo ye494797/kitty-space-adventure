@@ -671,7 +671,7 @@ function isColliding(
     const second =
         secondElement.getBoundingClientRect();
 
-    const padding = 12;
+    const padding = 20;
 
     return !(
         first.right - padding <
